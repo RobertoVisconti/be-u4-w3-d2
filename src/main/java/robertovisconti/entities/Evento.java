@@ -2,6 +2,7 @@ package robertovisconti.entities;
 
 
 import jakarta.persistence.*;
+import robertovisconti.enums.TypeEvents;
 
 import java.time.LocalDate;
 
@@ -30,7 +31,7 @@ public class Evento {
 
     @Column(name = "tipo_evento", nullable = false)
     @Enumerated(EnumType.STRING) // serve per dire a Hibernate di creare una casella testuale degli enum
-    private String tipoEvento;
+    private TypeEvents tipoEvento;
 
     @Column(name = "numero_massimo_partecipanti", nullable = false)
     private Integer numeroMassimoPartecipanti;
@@ -41,7 +42,7 @@ public class Evento {
 
 
     // Costruttore classico
-    public Evento(String titolo, LocalDate dataEvento, String descrizione, String tipoEvento, Integer numeroMassimoPartecipanti) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TypeEvents tipoEvento, Integer numeroMassimoPartecipanti) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
@@ -76,11 +77,11 @@ public class Evento {
         this.descrizione = descrizione;
     }
 
-    public String getTipoEvento() {
+    public TypeEvents getTipoEvento() {
         return tipoEvento;
     }
 
-    public void setTipoEvento(String tipoEvento) {
+    public void setTipoEvento(TypeEvents tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
 
