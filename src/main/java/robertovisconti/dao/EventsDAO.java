@@ -3,6 +3,7 @@ package robertovisconti.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import robertovisconti.entities.Evento;
+import robertovisconti.exceptions.NotFoundByIdException;
 
 public class EventsDAO {
 
@@ -27,6 +28,13 @@ public class EventsDAO {
         transaction.commit(); // questo mi permette di poter passare l'oggetto nuovo creato alla tabella nel DB, quindi effettuo un commit
 
         System.out.println("Il nuovo evento: " + newEvento + "è stato salvato nel DB correttamente.");
+    }
+
+
+    public Evento findById(long id) {
+        Evento fromDB = this.entityManager.find(Evento.class, id); // se non troverà nulla mi risulterà null quindi creo un if per gestirlo
+        if (fromDB == null) throw new NotFoundByIdException(id);
+        return fromDB;
     }
 
 }

@@ -6,6 +6,7 @@ import jakarta.persistence.Persistence;
 import robertovisconti.dao.EventsDAO;
 import robertovisconti.entities.Evento;
 import robertovisconti.enums.TypeEvents;
+import robertovisconti.exceptions.NotFoundByIdException;
 
 import java.time.LocalDate;
 
@@ -69,6 +70,15 @@ public class Application {
 //        eventsDAO.save(ev3);
 //        eventsDAO.save(ev4);
 //        eventsDAO.save(ev5);
+
+
+        // Ricerca tramite metodo finnById
+        try {
+            Evento trovato = eventsDAO.findById(3);
+            System.out.println(trovato);
+        } catch (NotFoundByIdException ex) {
+            System.out.println(ex.getMessage());
+        }
 
 
     }
