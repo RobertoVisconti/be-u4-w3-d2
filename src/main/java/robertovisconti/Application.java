@@ -80,6 +80,13 @@ public class Application {
             System.out.println(ex.getMessage());
         }
 
+        // Delete tramite id
+        try {
+            eventsDAO.deleteById(3);
+        } catch (NotFoundByIdException ex) {
+            System.out.println(ex.getMessage());
+        }
+
 
     }
 }

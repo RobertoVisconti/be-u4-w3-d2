@@ -37,4 +37,15 @@ public class EventsDAO {
         return fromDB;
     }
 
+
+    public void deleteById(long id) {
+        Evento fromDB = this.findById(id); // gli passo la funzione custom di ricerca id creata in prcedenza
+        // ricreiamo la transazion di prima per poter gestire l oggetto del DB
+        EntityTransaction transaction = this.entityManager.getTransaction();
+        transaction.begin(); // qui la lanciamo
+        this.entityManager.remove(fromDB); // qui gli diciamo che l'oggetto equivalente all id in questo caso l evento dovrà essere rimosso
+        transaction.commit(); // qui gli diciamo che la record corrispondente all id dell'oggetto è da rimuovere
+        System.out.println("L'evento " + fromDB + " è stato rimosso con successo.");
+    }
+
 }
