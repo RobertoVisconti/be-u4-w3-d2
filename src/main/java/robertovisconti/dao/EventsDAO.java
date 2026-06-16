@@ -48,4 +48,21 @@ public class EventsDAO {
         System.out.println("L'evento " + fromDB + " è stato rimosso con successo.");
     }
 
+    public void updateEvent(long id, Evento update) {
+        Evento trovato = this.findById(id); // gli passo la funzione custom di ricerca id creata in prcedenza
+        EntityTransaction transaction = this.entityManager.getTransaction();// ricreiamo la transazion di prima per poter gestire l oggetto del DB
+        transaction.begin(); // qui la lanciamo
+
+        // qui vado ad aggiornare i dati dell'evento
+        trovato.setTitolo(update.getTitolo());
+        trovato.setDescrizione(update.getDescrizione());
+        trovato.setDataEvento(update.getDataEvento());
+        trovato.setTipoEvento(update.getTipoEvento());
+        trovato.setNumeroMassimoPartecipanti(update.getNumeroMassimoPartecipanti());
+
+        transaction.commit(); // qui gli diciamo che la record corrispondente all id dell'oggetto è da rimuovere
+
+        System.out.println("L'evento con id " + id + " è stato aggiornato correttamente.");
+    }
+
 }

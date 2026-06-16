@@ -88,5 +88,20 @@ public class Application {
         }
 
 
+        try {
+            Evento ev4Update = new Evento(
+                    "Jujutsu Kaisen Expo",
+                    LocalDate.of(2026, 9, 12),
+                    "Mostra speciale con tavole originali, merchandising esclusivo e aree interattive a tema",
+                    TypeEvents.PRIVATO,
+                    5000
+            );
+
+            eventsDAO.updateEvent(4, ev4Update);// passo id è l'oggetto che deve sostituire il vecchio
+        } catch (NotFoundByIdException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+
     }
 }
